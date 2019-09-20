@@ -1,0 +1,21 @@
+<% title "#{@curr_user.first_name} #{@curr_user.last_name} 's photos" %>
+<h2>Photo List for <%= @curr_user.first_name %> <%= @curr_user.last_name %> (ID #<%= @curr_user.id %>)</h2>
+
+<p><a href="/users/index">To Users List</a></p>
+ <% @curr_user.photos.each.with_index(1) do |photo, i| %>
+  <p>Photo <%= i %>, posted on <%= photo.date_time %>:</p>
+  <p><%= image_tag(photo.file_name) %></p>
+  <% if photo.comments.length != 0 %>
+    <%= "Photo #{i} comments:" %>
+  <% end %>
+  <% photo.comments.each do |comment| %>
+    <table border="1">
+      <tr>
+        <td><%= link_to(comment.user.first_name + " " + comment.user.last_name, comment.user_id) %> (<%= comment.date_time %>) says:</td>
+      </tr>
+      <tr>
+        <td><%= comment.comment_text %></td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>

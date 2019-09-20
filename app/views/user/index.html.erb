@@ -1,0 +1,19 @@
+<% title "Users" %>
+<h2>PhotoHub User List</h2>
+
+<table border="3" cellpadding="10" cellspacing="10">
+  <tr>
+    <td>User</td>
+    <td>First</td>
+    <td>Last</td>
+    <td>Photos</td>
+  </tr>
+  <% @users_all.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><a href="/photos/index/<%= user.id %>"> User <%= user.id %></a></td>
+  <% end %>
+  </tr>
+</table>
